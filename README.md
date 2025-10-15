@@ -217,3 +217,140 @@ php artisan migrate
 ```Shell
 php artisan migrate:fresh --seed
 ```
+
+## app/http/controllers
+
+ide jönnek a lekérdezések
+
+```Shell
+php artisan install:api
+```
+
+```Shell
+php artisan key:generate
+```
+
+```Shell
+php artisan serve
+```
+
+nyiss új terminált és menj a projektmappába
+
+utánna
+(Sorrend: függvény - útvonal - teszt)
+
+## airlinecontroller-be
+
+```php
+    public function index()
+    {
+        return Airline::all();
+    }
+```
+
+## routes/api
+
+```php
+Route::get('/airlines', [AirlineController::class, 'index']);
+```
+
+Ezután thunderclient
+
+![[Képernyőfotó 2025-10-15 - 19.19.50.png]]
+
+## airlinecontroller-be
+
+```php
+    public function show($id)
+    {
+        return Airline::find($id);
+    }
+```
+
+## routes/api
+
+```php
+Route::get('/airline/{id}', [AirlineController::class, 'show']);
+```
+
+![[Képernyőfotó 2025-10-15 - 19.27.41.png]]
+
+## airlinecontroller-be
+
+```php
+    public function store(StoreAirlineRequest $request)
+    {
+        $airline = new Airline();
+        $airline->fill($request->all());
+        $airline->save();
+
+        return response()->json($airline, 201);
+    }
+```
+
+## app/http/request
+
+### StoreAirlineRequest-be
+
+```php
+    public function authorize(): bool
+    {
+        return true;
+    }
+```
+
+## routes/api
+
+```php
+Route::post('/airlines', [AirlineController::class, 'store']);
+```
+
+![[Képernyőfotó 2025-10-15 - 19.36.06.png]]
+
+## airlinecontroller-be
+
+```php
+    public function update(UpdateAirlineRequest $request, $id)
+    {
+        $airline = Airline::find($id);
+    }
+```
+
+## app/http/request
+
+### UpdateAirlineRequest-be
+
+```php
+    public function authorize(): bool
+    {
+        return true;
+    }
+```
+
+## routes/api
+
+```php
+Route::put('/airlines/{id}', [AirlineController::class, 'update']);
+```
+
+![[Képernyőfotó 2025-10-15 - 19.47.28.png]]
+
+## airlinecontroller-be
+
+```php
+    public function destroy($id)
+    {
+        $airline = Airline::find($id);
+        $airline->delete();
+
+        return response()->json(null, 204);
+    }
+```
+
+## routes/api
+
+```php
+Route::delete('/airlines/{id}', [AirlineController::class, 'destroy']);
+```
+
+![[Képernyőfotó 2025-10-15 - 19.52.43.png]]
