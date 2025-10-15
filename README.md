@@ -1,6 +1,6 @@
 # Számalk Backend 2025.10.15
 
-git:
+## git:
 
 ### repo létrehozása majd
 
@@ -10,7 +10,7 @@ git remote add origin https://github.com/gombiiiiii/summary_20251015.git
 git branch -M main
 ```
 
-### Projekt létrehozása
+## Projekt létrehozása
 
 ```Shell
 composer create-project laravel/laravel summary_project
@@ -18,13 +18,13 @@ composer create-project laravel/laravel summary_project
 
 ### xamp indítás és adatbázis létrehozás
 
-értelem szerűen hozd létre
+értelem szerűen hozd létre, a php myadminban
 
 ### .env szerkesztése
 
 23-28.-ik sor szerkesztése
 
-### táblák létrehozása
+## táblák létrehozása
 
 **SORREND FONTOS!!**
 haladjunk jobbról balra
